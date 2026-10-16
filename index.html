@@ -73,7 +73,7 @@ footer{margin-top:34px;color:var(--mute);font-size:.82rem}
   <p class="clk" id="clk"></p>
   <p class="route">Londres → París → Mulhouse → Zúrich → Lucerna → Innsbruck → Verona → Venecia → Florencia → Asís → Roma</p>
 </header>
-<nav aria-label="Secciones"><a href="#calendario">Calendario</a><a href="#tours">Tours</a><a href="#vuelos">Vuelos</a><a href="#hoteles">Hoteles</a><a href="#grupo">Grupo</a><a href="#telefonos">Teléfonos</a><a href="#frases">Frases</a><a href="#info">Info útil</a></nav>
+<nav aria-label="Secciones"><a href="#calendario">Calendario</a><a href="#tours">Tours</a><a href="#vuelos">Vuelos</a><a href="#hoteles">Hoteles</a><a href="#grupo">Grupo</a><a href="#emergencias">Emergencias</a><a href="#telefonos">Teléfonos</a><a href="#frases">Frases</a><a href="#info">Info útil</a></nav>
 
 <section id="calendario">
 <h2>Calendario día por día</h2>
@@ -110,6 +110,12 @@ footer{margin-top:34px;color:var(--mute);font-size:.82rem}
 <h2>Quién viaja</h2>
 <p class="sub">6 parejas, una habitación por pareja. Mismos vuelos, hoteles y fechas para todos.</p>
 <div class="pairs" id="pairs"></div>
+</section>
+
+<section id="emergencias">
+<h2>Emergencias</h2>
+<p class="sub">Para un peligro inmediato llama primero al número local. Los consulados de México ayudan en casos como hospitalización, detención, pérdida de pasaporte o fallecimiento. Toca un número para llamar.</p>
+<div class="card" id="em"></div>
 </section>
 
 <section id="telefonos">
@@ -328,6 +334,52 @@ P.forEach(function(p,i){
   var c=el("div","card");c.appendChild(el("p","meta","Pareja "+(i+1)));
   c.appendChild(el("p",0,p[0]));c.appendChild(el("p",0,p[1]));c.appendChild(el("p","meta",p[2]));pr.appendChild(c);
 });
+
+var EM=[
+["Emergencias locales",[
+["Europa: policía, ambulancia y bomberos","112","112"],
+["Reino Unido","999","999"]],
+"El 112 funciona en Francia, Austria, Italia y España. Si tu seguridad física está en riesgo en Italia, llama al 112."],
+["Reino Unido (Londres, 18 al 20 oct)",[
+["Consulado: 16A St George Street, Londres W1S 1FD","",""],
+["Teléfono (capacidad limitada)","+44 20 7499 9442","+442074999442"],
+["Emergencia fines de semana y feriados","+44 7743 742 888","+447743742888"]],
+"Horario: lunes a viernes de 9:00 a 13:00. El sitio indica atender la línea de emergencia de 10:00 a 17:00; si no contestan, deja mensaje y correo."],
+["Francia (París, 20 al 23 oct)",[
+["Consulado: 4 Rue Notre-Dame des Victoires, 75002 Páris","",""],
+["Teléfono","+33 1 42 86 56 20","+33142865620"],
+["Emergencia (protección a mexicanos)","+33 6 13 53 55 74","+33613535574"]],
+"Horario de oficina: lunes a viernes por la mañana. Las páginas oficiales dan horarios distintos, así que usa el número de emergencia fuera de horario."],
+["Austria (Innsbruck, 24 al 25 oct)",[
+["Embajada en Viena: Renngasse 5, 1010 Viena","",""],
+["Teléfono","+43 1 310 73 83 9","+43131073839"],
+["Emergencia","+43 699 1042 0075","+4369910420075"]],
+"Innsbruck queda lejos de Viena: se atiende por teléfono. Si no contestan, deja nombre, número, ciudad, hotel y el problema; te devuelven la llamada."],
+["Italia: Roma y Florencia (Prato)",[
+["Embajada en Roma: Via Lazzaro Spallanzani 16, 00161 Roma","",""],
+["Teléfono consular","+39 06 4416 0666","+390644160666"],
+["Emergencia Roma (Lacio y Toscana)","+39 339 435 3085","+393394353085"]],
+"Cubre Roma y Florencia/Prato. Horario de oficina: lunes a viernes de 9:00 a 18:00."],
+["Italia: Venecia (Mestre) y Verona",[
+["Consulado General en Milán","",""],
+["Emergencia Milán (Veneto)","+39 331 716 5760","+393317165760"]],
+"El Veneto lo atiende el consulado de Milán, no el de Roma."],
+["Seguro de viaje",[
+["Aseguradora, número de póliza y teléfono 24 horas","Pendiente",""]],
+"Mándame estos datos y los agrego aquí. Es lo primero que se llama en caso de hospital."]
+];
+var emb=document.getElementById("em");
+EM.forEach(function(g,gi){
+  emb.appendChild(el("p","lab",g[0]));
+  g[1].forEach(function(r){
+    var row=el("div","row");row.appendChild(el("b",0,r[0]));
+    var s=el("span");
+    if(r[2]){var a=el("a",0,r[1]);a.href="tel:"+r[2];s.appendChild(a)}else if(r[1]){s.textContent=r[1];s.style.color="var(--mute)"}
+    row.appendChild(s);emb.appendChild(row);
+  });
+  emb.appendChild(el("p","meta",g[2]));
+});
+emb.appendChild(el("p","wsrc","Datos de los sitios oficiales de las embajadas y consulados de México (SRE), consultados el 16 de octubre de 2026. Los teléfonos y horarios pueden cambiar: confirma antes de viajar. No busqué consulado en Suiza: el 24 de octubre solo pasan unas horas."));
 var tl=document.getElementById("tel");
 function row(a,b,h){var r=el("div","row");r.appendChild(el("b",0,a));var s=el("span");if(h){var l=el("a",0,b);l.href="tel:"+h;s.appendChild(l)}else{s.textContent=b;s.style.color="var(--mute)"}r.appendChild(s);tl.appendChild(r)}
 [["Viajes Lili: Yuridia Beltrán, asesora","33 3462 9121","+523334629121"],["Viajes Lili: servicio al cliente","33 4162 0155","+523341620155"],["Emergencias en Europa","112","112"],["Emergencias en Reino Unido","999","999"]].forEach(function(c){row(c[0],c[1],c[2])});
