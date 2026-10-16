@@ -1,6 +1,6 @@
 // Guarda la página en el celular para que abra sin internet.
 // Si cambias index.html, sube también este archivo con otro número de versión (v1 -> v2).
-const V = "viaje-europa-v3";
+const V = "viaje-europa-v4";
 const CORE = ["./", "index.html", "manifest.webmanifest", "icon-192.png", "icon-512.png"];
 
 self.addEventListener("install", (e) => {
